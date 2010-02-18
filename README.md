@@ -1,13 +1,13 @@
 So what is it?
 ==============
 
-whereami is a simple command-line utility that outputs your geographical coordinates, as determined by Core Location, which uses nearby WiFi networks with known positions to pinpoint your position. It outputs them to the standard output in an easy to parse format, in good UNIX fashion.
+whereami is a simple command-line utility that outputs your geographical coordinates, as determined by Core Location, which uses nearby WiFi networks with known positions to pinpoint your location. It prints them to the standard output in an easy to parse format, in good UNIX fashion.
 
 
 Requirements
 ============
 
-wherami only works in versions of Mac OS X 10.6 (Snow Leopard) or greater, as it makes use of the Core Location framework.
+whereami only works in versions of Mac OS X 10.6 (Snow Leopard) or greater, as it makes use of the Core Location framework.
 
 
 TODO
