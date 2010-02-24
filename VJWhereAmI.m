@@ -13,9 +13,9 @@
 
 - (void) printLocation {
 	manager = [[CLLocationManager alloc] init];
- locationObtained = NO;
-	[manager setDelegate:self];
-	
+		[manager setDelegate:self];
+	locationObtained = NO;
+
 	
 	
 	[manager startUpdatingLocation];
@@ -30,6 +30,11 @@
 	printf("%s\n",[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
 	locationObtained = YES;
 	CFRunLoopStop(CFRunLoopGetCurrent());
+	
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	printf("%s\n",[[NSString stringWithFormat:@"%@: %@",[error localizedDescription],[error localizedFailureReason]] UTF8String]);
 }
 
 
