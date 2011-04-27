@@ -14,21 +14,26 @@
 - (void) printLocation {
 	manager = [[CLLocationManager alloc] init];
 		[manager setDelegate:self];
-	locationObtained = NO;
+	locationObtained = 0;
 
 	
 	
 	[manager startUpdatingLocation];
 	
-	while (!locationObtained) {
+	while (locationObtained < 2) {
 		CFRunLoopRun();
 	}
 	[manager release];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation  {
-	printf("%s\n",[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
-	locationObtained = YES;
+	printf("iteration %d, %s\n",locationObtained,[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
+  if (locationObtained < 1) {
+    locationObtained++;
+    return;
+  }
+  printf("%s\n",[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
+	locationObtained++;
 	CFRunLoopStop(CFRunLoopGetCurrent());
 	
 }
