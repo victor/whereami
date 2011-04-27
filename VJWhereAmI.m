@@ -27,7 +27,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation  {
-	printf("iteration %d, %s\n",locationObtained,[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
+	// printf("iteration %d, %s\n",locationObtained,[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
   if (locationObtained < 1) {
     locationObtained++;
     return;
