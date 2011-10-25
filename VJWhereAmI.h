@@ -12,7 +12,7 @@
 @interface VJWhereAmI : NSObject <CLLocationManagerDelegate> {
 	
 	CLLocationManager * manager;	
-	BOOL locationObtained; 
+	int locationObtained; 
 	
 }
 - (void) printLocation;
