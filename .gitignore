@@ -16,3 +16,7 @@ build/*
 # osx noise
 .DS_Store
 profile
+
+# Xcode 4
+xcuserdata
+*.xcworkspace
