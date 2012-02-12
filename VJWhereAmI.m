@@ -16,8 +16,6 @@
 		[manager setDelegate:self];
 	locationObtained = NO;
 
-	
-	
 	[manager startUpdatingLocation];
 	
 	while (!locationObtained) {
@@ -27,10 +25,11 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation  {
-	printf("%s\n",[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
-	locationObtained = YES;
-	CFRunLoopStop(CFRunLoopGetCurrent());
-	
+    if (oldLocation != nil) {
+        printf("%s\n",[[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude] UTF8String]);
+        locationObtained = YES;
+        CFRunLoopStop(CFRunLoopGetCurrent());
+    }	
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
