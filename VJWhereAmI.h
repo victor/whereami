@@ -10,10 +10,11 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface VJWhereAmI : NSObject <CLLocationManagerDelegate> {
-	
-	CLLocationManager * manager;	
-	BOOL locationObtained; 
-	
+
+	CLLocationManager * manager;
+	BOOL locationObtained, errorOccurred;
+
+
 }
 - (void) printLocation;
 

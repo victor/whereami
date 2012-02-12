@@ -15,10 +15,11 @@
 	manager = [[CLLocationManager alloc] init];
 		[manager setDelegate:self];
 	locationObtained = NO;
+    errorOccurred = NO;
 
 	[manager startUpdatingLocation];
 	
-	while (!locationObtained) {
+	while (!locationObtained && !errorOccurred) {
 		CFRunLoopRun();
 	}
 	[manager release];
@@ -33,7 +34,9 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	printf("%s\n",[[NSString stringWithFormat:@"%@: %@",[error localizedDescription],[error localizedFailureReason]] UTF8String]);
+	fprintf(stderr,"%s\n",[[NSString stringWithFormat:@"%@: %@",[error localizedDescription],[error localizedFailureReason]] UTF8String]);
+	errorOccurred = YES;
+	CFRunLoopStop(CFRunLoopGetCurrent());
 }
 
 
