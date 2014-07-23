@@ -10,6 +10,12 @@ Requirements
 whereami only works in versions of Mac OS X 10.6 (Snow Leopard) or greater, as it makes use of the Core Location framework.
 
 
+Installation and Use
+====================
+
+See the notes on [contributing](CONTRIBUTORS.md).
+
+
 TODO
 ====
 
@@ -17,6 +23,7 @@ TODO
 * Add more options for output of additional data, like altitude, precision or course, and also for input of minimum precision
 * Write a Makefile so that Xcode is not needed
 * Handle errors gracefully. I just need to implement the proper delegate method
+* Update CONTRIBUTORS with styleguide, layout, and workflow
 
 
 LICENSE
