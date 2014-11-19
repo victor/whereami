@@ -7,12 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GBCommandLineParser.h"
 
 @class GBCommandLineParser;
 @class GBSettings;
 
-/** Various options flags, can combine with GBValueRequirement from GBCommandLineParser. */
-typedef NSUInteger GBOptionFlags;
+/** Various option flags. You can also use GBValueRequirement values here! */
+typedef NS_OPTIONS(NSUInteger, GBOptionFlags) {
+	GBOptionRequiredValue = 0, ///< Command line argument requires a value.
+	GBOptionOptionalValue = 1 << 0, ///< Command line argument can optionally have a value, but is not required.
+	GBOptionNoValue = 1 << 1,///< Command line argument is on/off switch.
+	GBOptionSeparator = 1 << 3, ///< Option is separator, not real option definition.
+	GBOptionGroup = 1 << 4,	///< Option is an option gorup, not actual option definition.
+	GBOptionNoCmdLine = 1 << 5, ///< Option is not used on command line, don't register to parser.
+	GBOptionNoPrint = 1 << 6, ///< Option should be excluded from print settings display.
+	GBOptionNoHelp = 1 << 7, ///< Option should be excluded from help display.
+	GBOptionInvisible = GBOptionNoPrint | GBOptionNoHelp,
+};
 
 /** Description of a single option or separator. */
 typedef struct {
@@ -109,8 +120,10 @@ typedef NSString *(^GBOptionStringBlock)(void);
 
 #pragma mark - Options registration
 
-- (void)registerOptionsFromDefinitions:(GBOptionDefinition *)definitions;
+- (void)registerOptionsFromDefinitions:(GBOptionDefinition *)definitions; // this mode doesn't support option groups at this moment!
 - (void)registerSeparator:(NSString *)description;
+- (void)registerGroup:(NSString *)name description:(NSString *)description optionsBlock:(void(^)(GBOptionsHelper *options))block;
+- (void)registerGroup:(NSString *)name description:(NSString *)description flags:(GBOptionFlags)flags optionsBlock:(void(^)(GBOptionsHelper *options))block;
 - (void)registerOption:(char)shortName long:(NSString *)longName description:(NSString *)description flags:(GBOptionFlags)flags;
 
 #pragma mark - Integration with other components
@@ -143,11 +156,6 @@ typedef NSString *(^GBOptionStringBlock)(void);
 
 #pragma mark - 
 
-/** Various option flags. You can also use GBValueRequirement values here! */
-enum {
-	GBOptionSeparator = 1 << 3, ///< Option is separator, not real option definition.
-	GBOptionNoCmdLine = 1 << 4, ///< Option is not used on command line, don't register to parser.
-	GBOptionNoPrint = 1 << 5, ///< Option should be excluded from print settings display.
-	GBOptionNoHelp = 1 << 6, ///< Option should be excluded from help display.
-	GBOptionInvisible = GBOptionNoPrint | GBOptionNoHelp,
-};
+@interface GBCommandLineParser (GBOptionsHelper)
+- (void)registerOptions:(GBOptionsHelper *)options;
+@end

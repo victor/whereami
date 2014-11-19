@@ -23,19 +23,13 @@ static NSString * const GBSettingsArgumentsKey = @"B450A340-EC4F-40EC-B18D-B52DB
 
 @implementation GBSettings
 
-@synthesize name = _name;
-@synthesize parent = _parent;
-@synthesize arrayKeys = _arrayKeys;
-@synthesize arguments = _arguments;
-@synthesize storage = _storage;
-
 #pragma mark - Initialization & disposal
 
-+ (id)settingsWithName:(NSString *)name parent:(GBSettings *)parent {
++ (instancetype)settingsWithName:(NSString *)name parent:(GBSettings *)parent {
 	return [[self alloc] initWithName:name parent:parent];
 }
 
-- (id)initWithName:(NSString *)name parent:(GBSettings *)parent {
+- (instancetype)initWithName:(NSString *)name parent:(GBSettings *)parent {
 	self = [super init];
 	if (self) {
 		self.name = name;
@@ -59,11 +53,22 @@ static NSString * const GBSettingsArgumentsKey = @"B450A340-EC4F-40EC-B18D-B52DB
 	NSDictionary *values = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:error];
 	if (!values) return NO;
 	
+	// Prepare block that will handle individual key.
+	void(^handleKey)(NSString *, id) = ^(NSString *key, id value) {
+		while ([key hasPrefix:@"-"]) key = [key substringFromIndex:1];
+		[self setObject:value forKey:key];
+	};
+	
 	// Copy all values to ourself. Remove - or -- prefix which can optionally be used in the file!
 	[self.storage removeAllObjects];
-	[values enumerateKeysAndObjectsUsingBlock:^(NSString *key, id result, BOOL *stop) {
-		while ([key hasPrefix:@"-"]) key = [key substringFromIndex:1];
-		[self setObject:result forKey:key];
+	[values enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
+		if ([value isKindOfClass:[NSDictionary class]]) {
+			[value enumerateKeysAndObjectsUsingBlock:^(NSString *valueKey, id valueValue, BOOL *stop) {
+				handleKey(valueKey, valueValue);
+			}];
+			return;
+		}
+		handleKey(key, value);
 	}];
 	return YES;
 }
@@ -114,8 +119,7 @@ static NSString * const GBSettingsArgumentsKey = @"B450A340-EC4F-40EC-B18D-B52DB
 	return [number boolValue];
 }
 - (void)setBool:(BOOL)value forKey:(NSString *)key {
-	NSNumber *number = [NSNumber numberWithBool:value];
-	[self setObject:number forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (NSInteger)integerForKey:(NSString *)key {
@@ -123,8 +127,7 @@ static NSString * const GBSettingsArgumentsKey = @"B450A340-EC4F-40EC-B18D-B52DB
 	return [number integerValue];
 }
 - (void)setInteger:(NSInteger)value forKey:(NSString *)key {
-	NSNumber *number = [NSNumber numberWithInteger:value];
-	[self setObject:number forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (NSUInteger)unsignedIntegerForKey:(NSString *)key {
@@ -132,8 +135,7 @@ static NSString * const GBSettingsArgumentsKey = @"B450A340-EC4F-40EC-B18D-B52DB
 	return (NSUInteger)[number integerValue];
 }
 - (void)setUnsignedInteger:(NSUInteger)value forKey:(NSString *)key {
-	NSNumber *number = [NSNumber numberWithUnsignedInteger:value];
-	[self setObject:number forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 - (CGFloat)floatForKey:(NSString *)key {
@@ -141,8 +143,7 @@ static NSString * const GBSettingsArgumentsKey = @"B450A340-EC4F-40EC-B18D-B52DB
 	return [number doubleValue];
 }
 - (void)setFloat:(CGFloat)value forKey:(NSString *)key {
-	NSNumber *number = [NSNumber numberWithDouble:value];
-	[self setObject:number forKey:key];
+	[self setObject:@(value) forKey:key];
 }
 
 #pragma mark - Arguments handling
@@ -160,7 +161,7 @@ GB_SYNTHESIZE_OBJECT(NSArray *, arguments, setArguments, GBSettingsArgumentsKey)
 #pragma mark - Registration & low level handling
 
 - (void)registerArrayForKey:(NSString *)key {
-[self.arrayKeys addObject:key];
+	[self.arrayKeys addObject:key];
 }
 
 - (id)objectForLocalKey:(NSString *)key {

@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 Tomaz Kragelj. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
+@class GBSettings;
+
 typedef NSUInteger GBValueRequirements;
 typedef NSUInteger GBParseFlags;
 typedef void(^GBCommandLineParseBlock)(GBParseFlags flags, NSString *argument, id value, BOOL *stop);
@@ -43,12 +47,19 @@ typedef void(^GBCommandLineParseBlock)(GBParseFlags flags, NSString *argument, i
 
 #pragma mark - Options registration
 
+- (void)beginRegisterOptionGroup:(NSString *)name;
+- (void)endRegisterOptionGroup; // optional; if another beginRegisterOptionGroup: is enountered, a new group is started. Use it if you want to register "standalone" options after group.
 - (void)registerOption:(NSString *)longOption shortcut:(char)shortOption requirement:(GBValueRequirements)requirement;
 - (void)registerOption:(NSString *)longOption requirement:(GBValueRequirements)requirement;
 - (void)registerSwitch:(NSString *)longOption shortcut:(char)shortOption;
 - (void)registerSwitch:(NSString *)longOption;
 
 #pragma mark - Options parsing
+
+- (void)registerSettings:(GBSettings *)settings;
+- (BOOL)parseOptionsUsingDefaultArguments;
+- (BOOL)parseOptionsWithArguments:(char **)argv count:(int)argc;
+- (BOOL)parseOptionsWithArguments:(NSArray *)arguments commandLine:(NSString *)cmd;
 
 - (BOOL)parseOptionsUsingDefaultArgumentsWithBlock:(GBCommandLineParseBlock)handler;
 - (BOOL)parseOptionsWithArguments:(char **)argv count:(int)argc block:(GBCommandLineParseBlock)handler;
@@ -57,23 +68,25 @@ typedef void(^GBCommandLineParseBlock)(GBParseFlags flags, NSString *argument, i
 #pragma mark - Getting parsed results
 
 - (id)valueForOption:(NSString *)longOption;
-- (NSArray *)arguments;
+
+@property (nonatomic, readonly) NSArray *arguments;
 
 @end
 
 #pragma mark -
 
 /** Various command line argument value requirements. */
-enum {
+typedef NS_ENUM(NSUInteger, GBValueFlags) {
 	GBValueRequired, ///< Command line argument requires a value.
 	GBValueOptional, ///< Command line argument can optionally have a value, but is not required.
 	GBValueNone ///< Command line argument is on/off switch.
 };
 
 /** Various parsing flags. */
-enum {
+typedef NS_ENUM(NSUInteger, GBParseFlag) {
 	GBParseFlagOption,
 	GBParseFlagArgument,
+	GBParseFlagWrongGroup,
 	GBParseFlagMissingValue,
 	GBParseFlagUnknownOption,
 };

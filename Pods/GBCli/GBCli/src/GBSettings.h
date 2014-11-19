@@ -40,8 +40,8 @@
 
 #pragma mark - Initialization & disposal
 
-+ (id)settingsWithName:(NSString *)name parent:(GBSettings *)parent;
-- (id)initWithName:(NSString *)name parent:(GBSettings *)parent;
++ (instancetype)settingsWithName:(NSString *)name parent:(GBSettings *)parent;
+- (instancetype)initWithName:(NSString *)name parent:(GBSettings *)parent;
 
 #pragma mark - Settings serialization support
 

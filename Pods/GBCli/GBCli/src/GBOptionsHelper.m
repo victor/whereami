@@ -7,8 +7,11 @@
 //
 
 #import "GBSettings.h"
-#import "GBCommandLineParser.h"
 #import "GBOptionsHelper.h"
+
+static NSUInteger GBOptionInternalEndGroup = 1 << 10;
+
+#pragma mark -
 
 @interface OptionDefinition : NSObject
 @property (nonatomic, assign) char shortOption;
@@ -18,25 +21,12 @@
 @end
 
 @implementation OptionDefinition
-@synthesize shortOption;
-@synthesize longOption;
-@synthesize description;
-@synthesize flags;
+@synthesize description = _description;
 @end
 
 #pragma mark - 
 
 @interface GBOptionsHelper ()
-- (void)replacePlaceholdersAndPrintStringFromBlock:(GBOptionStringBlock)block;
-- (void)enumerateOptions:(void(^)(OptionDefinition *definition, BOOL *stop))handler;
-- (NSUInteger)requirements:(OptionDefinition *)definition;
-- (BOOL)isSeparator:(OptionDefinition *)definition;
-- (BOOL)isCmdLine:(OptionDefinition *)definition;
-- (BOOL)isPrint:(OptionDefinition *)definition;
-- (BOOL)isHelp:(OptionDefinition *)definition;
-@property (nonatomic, readonly) NSString *applicationNameFromBlockOrDefault;
-@property (nonatomic, readonly) NSString *applicationVersionFromBlockOrNil;
-@property (nonatomic, readonly) NSString *applicationBuildFromBlockOrNil;
 @property (nonatomic, strong) NSMutableArray *registeredOptions;
 @end
 
@@ -44,20 +34,9 @@
 
 @implementation GBOptionsHelper
 
-@synthesize registeredOptions = _registeredOptions;
-@synthesize applicationName;
-@synthesize applicationVersion;
-@synthesize applicationBuild;
-@synthesize printValuesHeader;
-@synthesize printValuesArgumentsHeader;
-@synthesize printValuesOptionsHeader;
-@synthesize printValuesFooter;
-@synthesize printHelpHeader;
-@synthesize printHelpFooter;
-
 #pragma mark - Initialization & disposal
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	if (self) {
 		self.registeredOptions = [NSMutableArray array];
@@ -78,7 +57,27 @@
 - (void)registerSeparator:(NSString *)description {
 	[self registerOption:0 long:nil description:description flags:GBOptionSeparator];
 }
-	 
+
+- (void)registerGroup:(NSString *)name description:(NSString *)description optionsBlock:(void(^)(GBOptionsHelper *options))block {
+	[self registerGroup:name description:description flags:0 optionsBlock:block];
+}
+
+- (void)registerGroup:(NSString *)name description:(NSString *)description flags:(GBOptionFlags)flags optionsBlock:(void(^)(GBOptionsHelper *options))block {
+	NSParameterAssert(block != nil);
+	OptionDefinition *definition = [[OptionDefinition alloc] init];
+	definition.shortOption = 0;
+	definition.longOption = name;
+	definition.description = description;
+	definition.flags = GBOptionGroup | flags;
+	[self.registeredOptions addObject:definition];
+	
+	block(self);
+	
+	OptionDefinition *endDefinition = [[OptionDefinition alloc] init];
+	endDefinition.flags = GBOptionInternalEndGroup;
+	[self.registeredOptions addObject:endDefinition];
+}
+
 - (void)registerOption:(char)shortName long:(NSString *)longName description:(NSString *)description flags:(GBOptionFlags)flags {
 	OptionDefinition *definition = [[OptionDefinition alloc] init];
 	definition.shortOption = shortName;
@@ -92,8 +91,19 @@
 
 - (void)registerOptionsToCommandLineParser:(GBCommandLineParser *)parser {
 	[self enumerateOptions:^(OptionDefinition *definition, BOOL *stop) {
-		if ([self isSeparator:definition]) return;
 		if (![self isCmdLine:definition]) return;
+		if ([self isSeparator:definition]) return;
+		
+		if ([self isOptionGroup:definition]) {
+			[parser beginRegisterOptionGroup:definition.longOption];
+			return;
+		}
+		
+		if ([self isOptionGroupEnd:definition]) {
+			[parser endRegisterOptionGroup];
+			return;
+		}
+		
 		NSUInteger requirements = [self requirements:definition];
 		[parser registerOption:definition.longOption shortcut:definition.shortOption requirement:requirements];
 	}];
@@ -106,7 +116,7 @@
 	NSNumber *length = [lengths objectAtIndex:columns.count]; \
 	NSUInteger maxLength = MAX(value.length, length.unsignedIntegerValue); \
 	if (maxLength > length.unsignedIntegerValue) { \
-	NSNumber *newMaxLength = [NSNumber numberWithUnsignedInteger:maxLength]; \
+	NSNumber *newMaxLength = @(maxLength); \
 	[lengths replaceObjectAtIndex:columns.count withObject:newMaxLength]; \
 }
 	NSMutableArray *rows = [NSMutableArray array];
@@ -116,10 +126,10 @@
 	
 	// First add header row. Note that first element is the setting.
 	NSMutableArray *headers = [NSMutableArray arrayWithObject:@"Option"];
-	[lengths addObject:[NSNumber numberWithUnsignedInteger:[headers.lastObject length]]];
+	[lengths addObject:@([headers.lastObject length])];
 	[settings enumerateSettings:^(GBSettings *settings, BOOL *stop) {
 		[headers addObject:settings.name];
-		[lengths addObject:[NSNumber numberWithUnsignedInteger:settings.name.length]];
+		[lengths addObject:@(settings.name.length)];
 		settingsHierarchyLevels++;
 	}];
 	[rows addObject:headers];
@@ -128,6 +138,7 @@
 	__block NSUInteger lastSeparatorIndex = 0;
 	[self enumerateOptions:^(OptionDefinition *definition, BOOL *stop) {
 		if (![blockSelf isPrint:definition]) return;
+		if ([self isOptionGroupEnd:definition]) return;
 		
 		// Add separator. Note that we don't care about its length, we'll simply draw it over the whole line if needed.
 		if ([blockSelf isSeparator:definition]) {
@@ -135,14 +146,21 @@
 				[rows removeLastObject];
 				[rows removeLastObject];
 			}
-			NSArray *separators = [NSArray arrayWithObject:definition.description];
-			[rows addObject:[NSArray array]];
-			[rows addObject:separators];
+			[rows addObject:@[]];
+			[rows addObject:@[ definition.description ] ];
 			lastSeparatorIndex = rows.count;
 			return;
 		}
 		
-		// Prepare values array. Note that the first element is simply the name of the option.
+		// Add group.
+		if ([blockSelf isOptionGroup:definition]) {
+			NSMutableString *description = [definition.longOption mutableCopy];
+			if ([definition.description length] > 0) [description appendFormat:@" %@", definition.description];
+			[rows addObject:@[]];
+			[rows addObject:@[ description ]];
+			return;
+		}
+		
 		NSMutableArray *columns = [NSMutableArray array];
 		NSString *longOption = definition.longOption;
 		GB_UPDATE_MAX_LENGTH(longOption)
@@ -233,6 +251,7 @@
 	NSMutableArray *rows = [NSMutableArray array];
 	[self enumerateOptions:^(OptionDefinition *definition, BOOL *stop) {
 		if (![self isHelp:definition]) return;
+		if ([self isOptionGroupEnd:definition]) return;
 		
 		// Prepare separator. Remove previous one if there were no values prepared for it.
 		if ([self isSeparator:definition]) {
@@ -240,16 +259,25 @@
 				[rows removeLastObject];
 				[rows removeLastObject];
 			}
-			[rows addObject:[NSArray array]];
-			[rows addObject:[NSArray arrayWithObject:definition.description]];
+			[rows addObject:@[]];
+			[rows addObject:@[ definition.description ]];
 			lastSeparatorIndex = rows.count;
+			return;
+		}
+		
+		// Add group.
+		if ([self isOptionGroup:definition]) {
+			NSMutableString *description = [definition.longOption mutableCopy];
+			if ([definition.description length] > 0) [description appendFormat:@" %@", definition.description];
+			[rows addObject:@[]];
+			[rows addObject:@[ description ]];
 			return;
 		}
 		
 		// Prepare option description.
 		NSString *shortOption = (definition.shortOption > 0) ? [NSString stringWithFormat:@"-%c", definition.shortOption] : @"  ";
 		NSString *longOption = [NSString stringWithFormat:@"--%@", definition.longOption];
-		NSString *description = definition.description;
+		NSString *description = definition.description ? definition.description : @"";
 		NSUInteger requirements = [self requirements:definition];
 		
 		// Prepare option type and update longest option+type string size for better alignment later on.
@@ -324,9 +352,12 @@
 		return;
 	}
 	NSString *string = block();
-	string = [string stringByReplacingOccurrencesOfString:@"%APPNAME" withString:self.applicationNameFromBlockOrDefault];
-	string = [string stringByReplacingOccurrencesOfString:@"%APPVERSION" withString:self.applicationVersionFromBlockOrNil];
-	string = [string stringByReplacingOccurrencesOfString:@"%APPBUILD" withString:self.applicationBuildFromBlockOrNil];
+	if (self.applicationBuildFromBlockOrNil)
+		string = [string stringByReplacingOccurrencesOfString:@"%APPNAME" withString:self.applicationNameFromBlockOrDefault];
+	if (self.applicationVersionFromBlockOrNil)
+		string = [string stringByReplacingOccurrencesOfString:@"%APPVERSION" withString:self.applicationVersionFromBlockOrNil];
+	if (self.applicationBuildFromBlockOrNil)
+		string = [string stringByReplacingOccurrencesOfString:@"%APPBUILD" withString:self.applicationBuildFromBlockOrNil];
 	printf("%s\n", string.UTF8String);
 }
 
@@ -346,6 +377,14 @@
 	return ((definition.flags & GBOptionSeparator) > 0);
 }
 
+- (BOOL)isOptionGroup:(OptionDefinition *)definition {
+	return ((definition.flags & GBOptionGroup) > 0);
+}
+
+- (BOOL)isOptionGroupEnd:(OptionDefinition *)definition {
+	return ((definition.flags & GBOptionInternalEndGroup) > 0);
+}
+
 - (BOOL)isCmdLine:(OptionDefinition *)definition {
 	return ((definition.flags & GBOptionNoCmdLine) == 0);
 }
@@ -356,6 +395,16 @@
 
 - (BOOL)isHelp:(OptionDefinition *)definition {
 	return ((definition.flags & GBOptionNoHelp) == 0);
+}
+
+@end
+
+#pragma mark - 
+
+@implementation GBCommandLineParser (GBOptionsHelper)
+
+- (void)registerOptions:(GBOptionsHelper *)options {
+	[options registerOptionsToCommandLineParser:self];
 }
 
 @end

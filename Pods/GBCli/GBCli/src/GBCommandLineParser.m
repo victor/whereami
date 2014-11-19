@@ -6,30 +6,29 @@
 //  Copyright (c) 2012 Tomaz Kragelj. All rights reserved.
 //
 
-#import <getopt.h>
+#import "GBPrint.h"
+#import "GBSettings.h"
 #import "GBCommandLineParser.h"
 
-const struct GBCommandLineKeys {
-	__unsafe_unretained NSString *longOption;
-	__unsafe_unretained NSString *shortOption;
-	__unsafe_unretained NSString *requirement;
-	__unsafe_unretained id notAnOption;
-} GBCommandLineKeys = {
-	.longOption = @"long",
-	.shortOption = @"short",
-	.requirement = @"requirement",
-	.notAnOption = @"not-an-option",
-};
+static NSString * const GBCommandLineLongOptionKey = @"long";
+static NSString * const GBCommandLineShortOptionKey = @"short";
+static NSString * const GBCommandLineRequirementKey = @"requirement";
+static NSString * const GBCommandLineOptionGroupKey = @"group"; // this is returned while parsing to indicate an option group was detected.
+static NSString * const GBCommandLineNotAnOptionKey = @"not-an-option"; // this is returned while parsing to indicate an argument was detected.
 
 #pragma mark -
 
 @interface GBCommandLineParser ()
 - (NSDictionary *)optionDataForOption:(NSString *)shortOrLongName value:(NSString **)value;
 - (BOOL)isShortOrLongOptionName:(NSString *)value;
+@property (nonatomic, strong) GBSettings *settings; // optional (only required by simplified parsing methods)
 @property (nonatomic, strong) NSMutableDictionary *parsedOptions;
 @property (nonatomic, strong) NSMutableArray *parsedArguments;
 @property (nonatomic, strong) NSMutableDictionary *registeredOptionsByLongNames;
 @property (nonatomic, strong) NSMutableDictionary *registeredOptionsByShortNames;
+@property (nonatomic, strong) NSMutableDictionary *registeredOptionGroupsByNames;
+@property (nonatomic, strong) NSMutableSet *currentOptionsGroupOptions; // this is used both while registering and while parsing arguments
+@property (nonatomic, copy) NSString *currentOptionsGroupName; // used while parsing
 @end
 
 #pragma mark -
@@ -43,11 +42,12 @@ const struct GBCommandLineKeys {
 
 #pragma mark - Initialization & disposal
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	if (self) {
 		self.registeredOptionsByLongNames = [NSMutableDictionary dictionary];
 		self.registeredOptionsByShortNames = [NSMutableDictionary dictionary];
+		self.registeredOptionGroupsByNames = [NSMutableDictionary dictionary];
 		self.parsedOptions = [NSMutableDictionary dictionary];
 		self.parsedArguments = [NSMutableArray array];
 	}
@@ -56,24 +56,48 @@ const struct GBCommandLineKeys {
 
 #pragma mark - Options registration
 
+- (void)beginRegisterOptionGroup:(NSString *)name {
+	self.currentOptionsGroupOptions = self.registeredOptionGroupsByNames[name];
+
+	// Warn if we already have the given group.
+	if (self.registeredOptionGroupsByNames[name]) {
+		fprintf(stderr, "Group %s is already registered!", [name UTF8String]);
+		return;
+	}
+	
+	// Create options group data into which we'll be registering options from now on.
+	self.currentOptionsGroupOptions = [NSMutableSet set];
+	self.registeredOptionGroupsByNames[name] = self.currentOptionsGroupOptions;
+}
+
+- (void)endRegisterOptionGroup {
+	self.currentOptionsGroupName = nil;
+	self.currentOptionsGroupOptions = nil;
+}
+
 - (void)registerOption:(NSString *)longOption shortcut:(char)shortOption requirement:(GBValueRequirements)requirement {
 	// Register option data.
 	NSMutableDictionary *data = [NSMutableDictionary dictionary];
-	[data setObject:longOption forKey:GBCommandLineKeys.longOption];
-	[data setObject:[NSNumber numberWithUnsignedInteger:requirement] forKey:GBCommandLineKeys.requirement];
+	data[GBCommandLineLongOptionKey] = longOption;
+	data[GBCommandLineRequirementKey] = @(requirement);
+	self.registeredOptionsByLongNames[longOption] = data;
+	[self.currentOptionsGroupOptions addObject:longOption];
+	
+	// Register short option data if needed.
 	if (shortOption > 0) {
-		[data setObject:[NSNumber numberWithInt:shortOption] forKey:GBCommandLineKeys.shortOption];
-		[self.registeredOptionsByShortNames setObject:data forKey:[NSString stringWithFormat:@"%c", shortOption]];
+		NSString *shortOptionKey = [NSString stringWithFormat:@"%c", shortOption];
+		data[GBCommandLineShortOptionKey] = @(shortOption);
+		self.registeredOptionsByShortNames[shortOptionKey] = data;
 	}
-	[self.registeredOptionsByLongNames setObject:data forKey:longOption];
 
-	// If this is a swich, register negative form (i.e. if the option is named --option, negative form is --no-option). Note that negative form doesn't use short code!
+	// If this is a swich, register negative variant (i.e. if the option is named --option, negative form is --no-option). Note that negative variant doesn't support short code!
 	if (requirement == GBValueNone) {		
-		NSMutableDictionary *negData = [NSMutableDictionary dictionary];
-		NSString *negLongOption = [NSString stringWithFormat:@"no-%@", longOption];
-		[negData setObject:negLongOption forKey:GBCommandLineKeys.longOption];
-		[negData setObject:[NSNumber numberWithUnsignedInteger:requirement] forKey:GBCommandLineKeys.requirement];
-		[self.registeredOptionsByLongNames setObject:data forKey:negLongOption];
+		NSMutableDictionary *negativeVariantData = [NSMutableDictionary dictionary];
+		NSString *negativeVariantLongOption = [NSString stringWithFormat:@"no-%@", longOption];
+		negativeVariantData[GBCommandLineLongOptionKey] = negativeVariantLongOption;
+		negativeVariantData[GBCommandLineRequirementKey] = @(requirement);
+		self.registeredOptionsByLongNames[negativeVariantLongOption] = negativeVariantData;
+		[self.currentOptionsGroupOptions addObject:negativeVariantData];
 	}
 }
 
@@ -89,7 +113,54 @@ const struct GBCommandLineKeys {
 	[self registerSwitch:longOption shortcut:0];
 }
 
-#pragma mark - Options parsing
+#pragma mark - Options parsing - Simple methods with default behavior
+
+- (void)registerSettings:(GBSettings *)settings {
+	self.settings = settings;
+}
+
+- (BOOL)parseOptionsUsingDefaultArguments {
+	[self validateSimplifiedOptionsWithSelector:_cmd];
+	return [self parseOptionsUsingDefaultArgumentsWithBlock:[self simplifiedOptionsParserBlock]];
+}
+
+- (BOOL)parseOptionsWithArguments:(char **)argv count:(int)argc {
+	[self validateSimplifiedOptionsWithSelector:_cmd];
+	return [self parseOptionsWithArguments:argv count:argc block:[self simplifiedOptionsParserBlock]];
+}
+
+- (BOOL)parseOptionsWithArguments:(NSArray *)arguments commandLine:(NSString *)cmd {
+	[self validateSimplifiedOptionsWithSelector:_cmd];
+	return [self parseOptionsWithArguments:arguments commandLine:cmd block:[self simplifiedOptionsParserBlock]];
+}
+
+- (GBCommandLineParseBlock)simplifiedOptionsParserBlock {
+	return ^(GBParseFlags flags, NSString *argument, id value, BOOL *stop) {
+		switch (flags) {
+			case GBParseFlagUnknownOption:
+				gbfprintln(stderr, @"Unknown command line option %@, try --help!", argument);
+				break;
+			case GBParseFlagMissingValue:
+				gbfprintln(stderr, @"Missing value for command line option %s, try --help!", argument);
+				break;
+			case GBParseFlagWrongGroup:
+				gbfprintln(stderr, @"Invalid option %@ for group %@!", argument, self.currentOptionsGroupName);
+				break;
+			case GBParseFlagArgument:
+				[self.settings addArgument:value];
+				break;
+			case GBParseFlagOption:
+				[self.settings setObject:value forKey:argument];
+				break;
+		}
+	};
+}
+
+- (void)validateSimplifiedOptionsWithSelector:(SEL)sel {
+	NSAssert(self.settings != nil, @"%@ requires you to supply GBSettings instance via registerSettings: method!", NSStringFromSelector(sel));
+}
+
+#pragma mark - Options parsing - Methods with customizations
 
 - (BOOL)parseOptionsUsingDefaultArgumentsWithBlock:(GBCommandLineParseBlock)handler {
     NSProcessInfo *processInfo = [NSProcessInfo processInfo];
@@ -112,6 +183,7 @@ const struct GBCommandLineKeys {
 
 - (BOOL)parseOptionsWithArguments:(NSArray *)arguments commandLine:(NSString *)cmd block:(GBCommandLineParseBlock)handler {
 	// Cleanup in case parsing is invoked multiple times.
+	self.currentOptionsGroupOptions = nil;
 	[self.parsedOptions removeAllObjects];
 	[self.parsedArguments removeAllObjects];
 
@@ -120,13 +192,19 @@ const struct GBCommandLineKeys {
 	
 	// Parse options (options start with -- or -).
 	NSUInteger index = 0;
-	while (index < arguments.count) {
+	while (index < [arguments count]) {
 		id value = nil;
 		NSString *input = [arguments objectAtIndex:index];
 		NSDictionary *data = [self optionDataForOption:input value:&value];
-		if (data == GBCommandLineKeys.notAnOption) break; // no more options, only arguments left...
+		if (data == (id)GBCommandLineNotAnOptionKey) break; // no more options, only arguments left...
+		if (data == (id)GBCommandLineOptionGroupKey) {
+			// If this is group name, continue with next option...
+			handler(GBParseFlagOption, input, @YES, &stop);
+			index++;
+			continue;
+		}
 		
-		NSString *name = [data valueForKey:GBCommandLineKeys.longOption];
+		NSString *name = data[GBCommandLineLongOptionKey];
 		GBParseFlags flags = GBParseFlagOption;
 		
 		if (data == nil) {
@@ -134,16 +212,23 @@ const struct GBCommandLineKeys {
 			name = input;
 			flags = GBParseFlagUnknownOption;
 			result = NO;
+		} else if (self.currentOptionsGroupOptions && ![self.currentOptionsGroupOptions containsObject:name]) {
+			// If name of the option is not registered for the current group, notify observer.
+			name = input;
+			flags = GBParseFlagWrongGroup;
+			result = NO;
 		} else {
 			// Prepare the value or notify about problem with it.
-			GBValueRequirements requirement = [[data objectForKey:GBCommandLineKeys.requirement] unsignedIntegerValue];
+			GBValueRequirements requirement = [data[GBCommandLineRequirementKey] unsignedIntegerValue];
 			switch (requirement) {
 				case GBValueRequired:
-					// Option requires value: check next option and if it "looks like" an option (i.e. starts with -- or -), notify about missing value. Also notify about missing value if this is the last option. If we already have the value (via --name=value syntax), no need to search.
+					// Option requires value: check next option and if it "looks like" an option (i.e. starts with -- or - or is one of option group names), notify about missing value. Also notify about missing value if this is the last option. If we already have the value (via --name=value syntax), no need to search.
 					if (!value) {
 						if (index < arguments.count - 1) {
 							value = [arguments objectAtIndex:index + 1];
 							if ([self isShortOrLongOptionName:value]) {
+								flags = GBParseFlagMissingValue;
+							} else if ([self isOptionGroupName:value]) {
 								flags = GBParseFlagMissingValue;
 							} else {
 								index++;
@@ -154,17 +239,19 @@ const struct GBCommandLineKeys {
 					}
 					break;
 				case GBValueOptional:
-					// Options can have optional value: check next option and if it "looks like" a value (i.e. doens't start with -- or -), use it. Otherwie assume YES (the same if there's no more option). If we already have the value (via --name=value syntax), no need to search.
+					// Options can have optional value: check next option and if it "looks like" a value (i.e. doesn't start with -- or -), use it. Otherwie assume YES (the same if there's no more option). If we already have the value (via --name=value syntax), no need to search.
 					if (!value) {
 						if (index < arguments.count - 1) {
 							value = [arguments objectAtIndex:index + 1];
 							if ([self isShortOrLongOptionName:value]) {
-								value = [NSNumber numberWithInt:YES];
+								value = @YES;
+							} else if ([self isOptionGroupName:value]) {
+								value = @YES;
 							} else {
 								index++;
 							}
 						} else {
-							value = [NSNumber numberWithInt:YES];
+							value = @YES;
 						}
 					}
 					break;
@@ -173,16 +260,16 @@ const struct GBCommandLineKeys {
 					if ([input hasPrefix:@"--no-"]) {
 						if (value) {
 							BOOL cmdLineValue = [value boolValue];
-							value = [NSNumber numberWithBool:!cmdLineValue];
+							value = @(!cmdLineValue);
 						} else {
-							value = [NSNumber numberWithBool:NO];
+							value = @NO;
 						}
 					} else {
 						if (value) {
 							BOOL cmdLineValue = [value boolValue];
-							value = [NSNumber numberWithBool:cmdLineValue];
+							value = @(cmdLineValue);
 						} else {
-							value = [NSNumber numberWithBool:YES];
+							value = @YES;
 						}
 					}
 					break;
@@ -223,8 +310,12 @@ const struct GBCommandLineKeys {
 	} else if ([shortOrLongName hasPrefix:@"-"]) {
 		name = [shortOrLongName substringFromIndex:1];
 		options = self.registeredOptionsByShortNames;
+	} else if ([self isOptionGroupName:shortOrLongName]) {
+		self.currentOptionsGroupName = shortOrLongName;
+		self.currentOptionsGroupOptions = self.registeredOptionGroupsByNames[shortOrLongName];
+		return (id)GBCommandLineOptionGroupKey;
 	} else {
-		return GBCommandLineKeys.notAnOption;
+		return (id)GBCommandLineNotAnOptionKey;
 	}
 	
 	// If the name includes value, extract that too.
@@ -240,6 +331,12 @@ const struct GBCommandLineKeys {
 	if ([value hasPrefix:@"--"]) return YES;
 	if ([value hasPrefix:@"-"]) return YES;
 	return NO;
+}
+
+- (BOOL)isOptionGroupName:(NSString *)value {
+	if (!self.registeredOptionGroupsByNames) return NO;
+	if (!self.registeredOptionGroupsByNames[value]) return NO;
+	return YES;
 }
 
 #pragma mark - Getting parsed results
