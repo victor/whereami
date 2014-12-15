@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		5740DE7A19B66AB2007DB96C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5740DE7919B66AB2007DB96C /* main.swift */; };
+		57A6F5121A3E368C0059F83B /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5071A3E368C0059F83B /* CLI.swift */; };
+		57A6F5131A3E368C0059F83B /* ChainableCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5091A3E368C0059F83B /* ChainableCommand.swift */; };
+		57A6F5141A3E368C0059F83B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F50A1A3E368C0059F83B /* Command.swift */; };
+		57A6F5151A3E368C0059F83B /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F50B1A3E368C0059F83B /* HelpCommand.swift */; };
+		57A6F5161A3E368C0059F83B /* LightweightCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F50C1A3E368C0059F83B /* LightweightCommand.swift */; };
+		57A6F5171A3E368C0059F83B /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F50D1A3E368C0059F83B /* VersionCommand.swift */; };
+		57A6F5181A3E368C0059F83B /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F50E1A3E368C0059F83B /* Input.swift */; };
+		57A6F5191A3E368C0059F83B /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F50F1A3E368C0059F83B /* Options.swift */; };
+		57A6F51A1A3E368C0059F83B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5101A3E368C0059F83B /* Router.swift */; };
+		57A6F51B1A3E368C0059F83B /* SignatureParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5111A3E368C0059F83B /* SignatureParser.swift */; };
+		57A6F51D1A3E371A0059F83B /* WhereAmICommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F51C1A3E371A0059F83B /* WhereAmICommand.swift */; };
+		57A6F5211A3E46F30059F83B /* WAIVersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5201A3E46F30059F83B /* WAIVersionCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +37,19 @@
 /* Begin PBXFileReference section */
 		5740DE7619B66AB2007DB96C /* whereami */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = whereami; sourceTree = BUILT_PRODUCTS_DIR; };
 		5740DE7919B66AB2007DB96C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		57A6F5071A3E368C0059F83B /* CLI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		57A6F5091A3E368C0059F83B /* ChainableCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainableCommand.swift; sourceTree = "<group>"; };
+		57A6F50A1A3E368C0059F83B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		57A6F50B1A3E368C0059F83B /* HelpCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
+		57A6F50C1A3E368C0059F83B /* LightweightCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightweightCommand.swift; sourceTree = "<group>"; };
+		57A6F50D1A3E368C0059F83B /* VersionCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionCommand.swift; sourceTree = "<group>"; };
+		57A6F50E1A3E368C0059F83B /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		57A6F50F1A3E368C0059F83B /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		57A6F5101A3E368C0059F83B /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		57A6F5111A3E368C0059F83B /* SignatureParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureParser.swift; sourceTree = "<group>"; };
+		57A6F51C1A3E371A0059F83B /* WhereAmICommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereAmICommand.swift; sourceTree = "<group>"; };
+		57A6F5201A3E46F30059F83B /* WAIVersionCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAIVersionCommand.swift; sourceTree = "<group>"; };
+		57DE650819B8BA020032578E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = whereami/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +82,47 @@
 		5740DE7819B66AB2007DB96C /* whereami */ = {
 			isa = PBXGroup;
 			children = (
+				57A6F5061A3E368C0059F83B /* SwiftCLI */,
+				57DE650719B8A8020032578E /* Supporting Files */,
 				5740DE7919B66AB2007DB96C /* main.swift */,
+				57A6F51C1A3E371A0059F83B /* WhereAmICommand.swift */,
+				57A6F5201A3E46F30059F83B /* WAIVersionCommand.swift */,
 			);
 			path = whereami;
+			sourceTree = "<group>";
+		};
+		57A6F5061A3E368C0059F83B /* SwiftCLI */ = {
+			isa = PBXGroup;
+			children = (
+				57A6F5071A3E368C0059F83B /* CLI.swift */,
+				57A6F5081A3E368C0059F83B /* Commands */,
+				57A6F50E1A3E368C0059F83B /* Input.swift */,
+				57A6F50F1A3E368C0059F83B /* Options.swift */,
+				57A6F5101A3E368C0059F83B /* Router.swift */,
+				57A6F5111A3E368C0059F83B /* SignatureParser.swift */,
+			);
+			path = SwiftCLI;
+			sourceTree = "<group>";
+		};
+		57A6F5081A3E368C0059F83B /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				57A6F5091A3E368C0059F83B /* ChainableCommand.swift */,
+				57A6F50A1A3E368C0059F83B /* Command.swift */,
+				57A6F50B1A3E368C0059F83B /* HelpCommand.swift */,
+				57A6F50C1A3E368C0059F83B /* LightweightCommand.swift */,
+				57A6F50D1A3E368C0059F83B /* VersionCommand.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		57DE650719B8A8020032578E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57DE650819B8BA020032578E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +181,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A6F5161A3E368C0059F83B /* LightweightCommand.swift in Sources */,
+				57A6F5211A3E46F30059F83B /* WAIVersionCommand.swift in Sources */,
+				57A6F51D1A3E371A0059F83B /* WhereAmICommand.swift in Sources */,
+				57A6F5131A3E368C0059F83B /* ChainableCommand.swift in Sources */,
+				57A6F51A1A3E368C0059F83B /* Router.swift in Sources */,
+				57A6F5121A3E368C0059F83B /* CLI.swift in Sources */,
 				5740DE7A19B66AB2007DB96C /* main.swift in Sources */,
+				57A6F51B1A3E368C0059F83B /* SignatureParser.swift in Sources */,
+				57A6F5191A3E368C0059F83B /* Options.swift in Sources */,
+				57A6F5171A3E368C0059F83B /* VersionCommand.swift in Sources */,
+				57A6F5141A3E368C0059F83B /* Command.swift in Sources */,
+				57A6F5181A3E368C0059F83B /* Input.swift in Sources */,
+				57A6F5151A3E368C0059F83B /* HelpCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +218,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -158,9 +234,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -184,7 +261,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = /;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -194,8 +274,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -203,6 +284,12 @@
 		5740DE7E19B66AB2007DB96C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					whereami/Info.plist,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -210,6 +297,12 @@
 		5740DE7F19B66AB2007DB96C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					whereami/Info.plist,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -233,6 +326,7 @@
 				5740DE7F19B66AB2007DB96C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -3,10 +3,17 @@
 //  whereami
 //
 //  Created by Victor Jalencas on 02/09/14.
-//  Copyright (c) 2014 Hand Forged. All rights reserved.
+//  Copyright © 2014 Hand Forged. All rights reserved.
 //
 
 import Foundation
 
-println("Hello, World!")
 
+// main code
+
+CLI.setup(name:"whereami", version:"1.0", description:"Get your location from the command line")
+let whereamiCommand = WhereAmICommand()
+let versionCommand = WAIVersionCommand()
+CLI.registerCustomVersionCommand(versionCommand)
+CLI.registerDefaultCommand(whereamiCommand)
+let result = CLI.go()
