@@ -10,6 +10,7 @@ import Foundation
 
 import CoreLocation
 
+
 let MaxLocationFixStaleness = 10.0
 
 enum OutputFormat {
@@ -42,7 +43,17 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error.localizedDescription);
+        if (error.domain == kCLErrorDomain) {
+            switch (CLError(rawValue: error.code)!) {
+            case .LocationUnknown:
+                errorMessage = "Could not determine your location. Perhaps your WiFi is disabled?"
+            case .Denied:
+                errorMessage = "Denied Permission"
+            default:
+                errorMessage = "Unspecified error"
+            }
+        }
+
         errorOccurred = true;
         CFRunLoopStop(CFRunLoopGetCurrent());
     }
@@ -61,11 +72,6 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
 
     }
 
-    func showError(String) -> () {
-        let stderr = NSFileHandle.fileHandleWithStandardError();
-
-        stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!);
-    }
 
     // MARK: - Aux function
 
@@ -104,18 +110,20 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
             }
         }
 
+        var status: Int32 = 0
         if (!errorOccurred) {
 
             let manager = CLLocationManager();
             manager.delegate = self;
             manager.startUpdatingLocation();
 
-            CFRunLoopRun()
+            status = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 15, 0)
         }
 
         if (errorOccurred) {
-            showError(errorMessage);
             return .Failure(errorMessage);
+        } else if (status == Int32(kCFRunLoopRunTimedOut)) {
+            return .Failure("Could not get a proper location fix in 15 seconds. Try again perhaps?")
         } else {
             display(location);
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570E39611A4E4AEA00B0AC6B /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E39601A4E4AEA00B0AC6B /* Output.swift */; };
 		5740DE7A19B66AB2007DB96C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5740DE7919B66AB2007DB96C /* main.swift */; };
 		57A6F5121A3E368C0059F83B /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5071A3E368C0059F83B /* CLI.swift */; };
 		57A6F5131A3E368C0059F83B /* ChainableCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5091A3E368C0059F83B /* ChainableCommand.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		570E39601A4E4AEA00B0AC6B /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		5740DE7619B66AB2007DB96C /* whereami */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = whereami; sourceTree = BUILT_PRODUCTS_DIR; };
 		5740DE7919B66AB2007DB96C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		57A6F5071A3E368C0059F83B /* CLI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				57A6F5081A3E368C0059F83B /* Commands */,
 				57A6F50E1A3E368C0059F83B /* Input.swift */,
 				57A6F50F1A3E368C0059F83B /* Options.swift */,
+				570E39601A4E4AEA00B0AC6B /* Output.swift */,
 				57A6F5101A3E368C0059F83B /* Router.swift */,
 				57A6F5111A3E368C0059F83B /* SignatureParser.swift */,
 			);
@@ -191,6 +194,7 @@
 				57A6F51B1A3E368C0059F83B /* SignatureParser.swift in Sources */,
 				57A6F5191A3E368C0059F83B /* Options.swift in Sources */,
 				57A6F5171A3E368C0059F83B /* VersionCommand.swift in Sources */,
+				570E39611A4E4AEA00B0AC6B /* Output.swift in Sources */,
 				57A6F5141A3E368C0059F83B /* Command.swift in Sources */,
 				57A6F5181A3E368C0059F83B /* Input.swift in Sources */,
 				57A6F5151A3E368C0059F83B /* HelpCommand.swift in Sources */,
