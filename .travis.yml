@@ -1,3 +1,4 @@
 language: objective-c
 xcode_project: whereami.xcodeproj
 xcode_scheme: whereami
+xcode_sdk: macosx10.10

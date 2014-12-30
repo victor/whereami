@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/victor/whereami.svg?branch=swift)](https://travis-ci.org/victor/whereami)
+
 So what is it?
 ==============
 
