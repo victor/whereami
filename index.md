@@ -1,3 +1,6 @@
+---
+---
+
 ### What is it, and how to use it
 
 `whereami` is the simplest way to get your location when at the command line. In the simplest form, just invoke the command and it will respond with your location coordinates:
