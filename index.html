@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>whereami by victor</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>whereami</h1>
+        <p>get your location at the command line</p>
+
+        <p class="view"><a href="https://github.com/victor/whereami">View the Project on GitHub <small>victor/whereami</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/victor/whereami/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/victor/whereami/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/victor/whereami">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a id="what-is-it-and-how-to-use-it" class="anchor" href="#what-is-it-and-how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is it, and how to use it</h3>
+
+<p><code>whereami</code> is the simplest way to get your location when at the command line. In the simplest form, just invoke the command and it will respond with your location coordinates:</p>
+
+<div class="highlight highlight-shell"><pre>$ whereami
+41.386905825791,2.14425782089087</pre></div>
+
+<p>If you need fancier output, you can pass <code>--format json</code> or <code>--format sexagesimal</code> to get the output in the corresponding format:</p>
+
+<div class="highlight highlight-shell"><pre>$ whereami --format json
+{<span class="pl-s1"><span class="pl-pds">"</span>latitude<span class="pl-pds">"</span></span>:41.386905825791, <span class="pl-s1"><span class="pl-pds">"</span>longitude<span class="pl-pds">"</span></span>: 2.14425782089087}
+$ whereami --format sexagesimal
+41° 23′ 12.8609728477426″, 2° 8′ 39.3281552071449″</pre></div>
+
+<h3>
+<a id="other-options" class="anchor" href="#other-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other options</h3>
+
+<p>In addition to the above options, there's also the mandatory <code>--version</code> and <code>--help</code> options.</p>
+
+<h3>
+<a id="how-to-get-it" class="anchor" href="#how-to-get-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to get it</h3>
+
+<p>The easiest way is with <a href="http://brew.sh">Homebrew</a>.</p>
+
+<div class="highlight highlight-shell"><pre>$ brew tap victor/whereami <span class="pl-k">&amp;&amp;</span> brew install whereami</pre></div>
+
+<p>Otherwise, head on to <a href="https://github.com/victor/whereami">the repo</a> and follow the instructions there.</p>
+
+<h3>
+<a id="hacking" class="anchor" href="#hacking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hacking</h3>
+
+<p>If you want to get your hands dirty, contributions are welcome. Please check <a href="https://github.com/victor/whereami">the github repo</a> for details.</p>
+
+<h3>
+<a id="travis-build-status" class="anchor" href="#travis-build-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Travis Build Status</h3>
+
+<p><a href="https://travis-ci.org/victor/whereami"><img src="https://travis-ci.org/victor/whereami.svg?branch=swift" alt="Build Status"></a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/victor">victor</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
