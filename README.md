@@ -9,7 +9,7 @@ So what is it?
 Requirements
 ============
 
-This version of `whereami` only works in versions of Mac OS X 10.10 (Yosemite) or, eventually, greater; as it is implemented in Swift. Why in Swift? Well, mostly because the command-line parsing libraries I could find in Objective-C where either a nuisance to install (because of lack of CocoaPods support) or required a lot of code to configure the options I need. On the other hand, [SwiftCLI](https://github.com/jakeheis/SwiftCLI/blob/master/LICENSE) makes it really easy.
+This version of `whereami` only works in versions of Mac OS X 10.9 (Mavericks) or greater; as it is implemented in Swift. Why in Swift? Well, mostly because the command-line parsing libraries I could find in Objective-C where either a nuisance to install (because of lack of CocoaPods support) or required a lot of code to configure the options I need. On the other hand, [SwiftCLI](https://github.com/jakeheis/SwiftCLI/blob/master/LICENSE) makes it really easy.
 
 To build it, you will require Xcode 6.1 and optionally `xctool`. You can build it from the command line using either `xcodebuild` or `xctool`, whichever you like best. Both should work equally well, but `xctool`’s output is fancier. You can install `xctool` using [homebrew](http://brew.sh).
 
