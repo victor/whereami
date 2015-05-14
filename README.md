@@ -16,12 +16,13 @@ To build it, you will require Xcode 6.1 and optionally `xctool`. You can build i
 INSTALLATION
 ============
 
-`whereami` comes with batteries included. You just need to clone the project to your local machine, switch to the **swift** branch, and install it using `xcodebuild`/`xctool`. In the near future, I will make that branch the main one, but not just yet.
+`whereami` comes with batteries included. You just need to clone the project to your local machine, switch to the **swift** branch, init the submodules, and install it using `xcodebuild`/`xctool`. In the near future, I will make that branch the main one, but not just yet.
 
 ```console
 $ git clone git@github.com:victor/whereami.git whereami
 $ cd whereami
 $ git checkout swift
+$ git submodule update --init --recursive
 $ xctool install
 ```
 
