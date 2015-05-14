@@ -17,4 +17,9 @@ let versionCommand = WAIVersionCommand()
 CLI.registerCustomVersionCommand(versionCommand)
 CLI.registerDefaultCommand(whereamiCommand)
 let result = CLI.go()
-exit(result ? 0 : 1)
+
+func cliExit(result: CLIResult) {
+    exit(result)
+}
+
+cliExit(result)

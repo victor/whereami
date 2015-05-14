@@ -95,7 +95,7 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
         return ""
     }
 
-    override func execute() -> CommandResult {
+    override func execute() -> ExecutionResult {
         switch CLLocationManager.authorizationStatus() {
         case .Restricted:
             errorMessage = "You don't have permission to use Location Services.";
@@ -121,26 +121,29 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
         }
 
         if (errorOccurred) {
-            return .Failure(errorMessage);
+            return failure(errorMessage);
         } else if (status == Int32(kCFRunLoopRunTimedOut)) {
-            return .Failure("Could not get a proper location fix in 15 seconds. Try again perhaps?")
+            return failure("Could not get a proper location fix in 15 seconds. Try again perhaps?")
         } else {
             display(location);
         }
 
-        return .Success;
+        return success();
     }
 
     override func handleOptions() {
-        self.onKey("--format", block: {key, value in
-            switch (value) {
-            case "json":
-                self.format = .Json
-            case "sexagesimal":
-                self.format = .Sexagesimal
-            default:
-                self.format = .Bare
-            }
-            }, usage:"output format (bare (default), json, sexagesimal)", valueSignature: "formatName")
+        self.onKey("--format",
+            usage:"output format (bare (default), json, sexagesimal)",
+            valueSignature: "formatName",
+            block: {key, value in
+                switch (value) {
+                case "json":
+                    self.format = .Json
+                case "sexagesimal":
+                    self.format = .Sexagesimal
+                default:
+                    self.format = .Bare
+                }
+        })
     }
 }

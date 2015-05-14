@@ -18,8 +18,8 @@ class WAIVersionCommand : VersionCommand {
         return "--version"
     }
 
-    override func execute() -> CommandResult  {
+    override func execute() -> ExecutionResult  {
         println("whereami version \(self.version)")
-        return .Success
+        return success()
     }
 }

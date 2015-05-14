@@ -1,0 +1,3 @@
+[submodule "whereami/SwiftCLI"]
+	path = whereami/SwiftCLI
+	url = https://github.com/jakeheis/SwiftCLI.git
