@@ -31,7 +31,7 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
 
         // the last one will be the most recent
-        let updatedLocation = locations.last as CLLocation;
+        let updatedLocation = locations.last as! CLLocation;
 
         // Check is not older than 10 seconds, otherwise discard it
         if (updatedLocation.timestamp.timeIntervalSinceNow < MaxLocationFixStaleness) {
