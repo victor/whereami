@@ -3,23 +3,18 @@
 //  whereami
 //
 //  Created by Victor Jalencas on 14/12/14.
-//  Copyright (c) 2014 Hand Forged. All rights reserved.
+//  © 2014-2015 Hand Forged. All rights reserved.
 //
 
 import Foundation
 
 class WAIVersionCommand : VersionCommand {
 
-    override func commandName() -> String  {
-        return "version"
-    }
-
-    override func commandShortcut() -> String?  {
+    override var commandShortcut: String?  {
         return "--version"
     }
 
-    override func execute() -> ExecutionResult  {
-        println("whereami version \(self.version)")
-        return success()
+    override func execute(arguments arguments: CommandArguments) throws  {
+        print("whereami version \(CLI.appVersion)")
     }
 }

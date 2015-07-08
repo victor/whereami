@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5729EF6F1B050DFE008BB71D /* CommandArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF5A1B050DFE008BB71D /* CommandArguments.swift */; };
-		5729EF701B050DFE008BB71D /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF5B1B050DFE008BB71D /* Options.swift */; };
-		5729EF711B050DFE008BB71D /* RawArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF5C1B050DFE008BB71D /* RawArguments.swift */; };
-		5729EF721B050DFE008BB71D /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF5E1B050DFE008BB71D /* CLI.swift */; };
-		5729EF731B050DFE008BB71D /* CommandSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF5F1B050DFE008BB71D /* CommandSignature.swift */; };
-		5729EF741B050DFE008BB71D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF601B050DFE008BB71D /* Extensions.swift */; };
-		5729EF751B050DFE008BB71D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF611B050DFE008BB71D /* Router.swift */; };
-		5729EF761B050DFE008BB71D /* ChainableCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF641B050DFE008BB71D /* ChainableCommand.swift */; };
-		5729EF771B050DFE008BB71D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF651B050DFE008BB71D /* Command.swift */; };
-		5729EF781B050DFE008BB71D /* LightweightCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF661B050DFE008BB71D /* LightweightCommand.swift */; };
-		5729EF791B050DFE008BB71D /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF681B050DFE008BB71D /* HelpCommand.swift */; };
-		5729EF7A1B050DFE008BB71D /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF691B050DFE008BB71D /* VersionCommand.swift */; };
-		5729EF7B1B050DFE008BB71D /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF6B1B050DFE008BB71D /* Input.swift */; };
-		5729EF7C1B050DFE008BB71D /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF6C1B050DFE008BB71D /* Output.swift */; };
-		5729EF7D1B050DFE008BB71D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5729EF6E1B050DFE008BB71D /* Result.swift */; };
 		5740DE7A19B66AB2007DB96C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5740DE7919B66AB2007DB96C /* main.swift */; };
+		57749A791B48A722008E4ECF /* CommandArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A651B48A722008E4ECF /* CommandArguments.swift */; };
+		57749A7A1B48A722008E4ECF /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A661B48A722008E4ECF /* Options.swift */; };
+		57749A7B1B48A722008E4ECF /* RawArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A671B48A722008E4ECF /* RawArguments.swift */; };
+		57749A7C1B48A722008E4ECF /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A691B48A722008E4ECF /* CLI.swift */; };
+		57749A7D1B48A722008E4ECF /* CommandSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A6A1B48A722008E4ECF /* CommandSignature.swift */; };
+		57749A7E1B48A722008E4ECF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A6B1B48A722008E4ECF /* Extensions.swift */; };
+		57749A7F1B48A722008E4ECF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A6C1B48A722008E4ECF /* Router.swift */; };
+		57749A801B48A722008E4ECF /* ChainableCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A6F1B48A722008E4ECF /* ChainableCommand.swift */; };
+		57749A811B48A722008E4ECF /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A701B48A722008E4ECF /* Command.swift */; };
+		57749A821B48A722008E4ECF /* CommandMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A711B48A722008E4ECF /* CommandMessageGenerator.swift */; };
+		57749A831B48A722008E4ECF /* LightweightCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A721B48A722008E4ECF /* LightweightCommand.swift */; };
+		57749A841B48A722008E4ECF /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A741B48A722008E4ECF /* HelpCommand.swift */; };
+		57749A851B48A722008E4ECF /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A751B48A722008E4ECF /* VersionCommand.swift */; };
+		57749A861B48A722008E4ECF /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A771B48A722008E4ECF /* Input.swift */; };
+		57749A871B48A722008E4ECF /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57749A781B48A722008E4ECF /* Output.swift */; };
 		57A6F51D1A3E371A0059F83B /* WhereAmICommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F51C1A3E371A0059F83B /* WhereAmICommand.swift */; };
 		57A6F5211A3E46F30059F83B /* WAIVersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6F5201A3E46F30059F83B /* WAIVersionCommand.swift */; };
 /* End PBXBuildFile section */
@@ -40,23 +40,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5729EF5A1B050DFE008BB71D /* CommandArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandArguments.swift; sourceTree = "<group>"; };
-		5729EF5B1B050DFE008BB71D /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
-		5729EF5C1B050DFE008BB71D /* RawArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawArguments.swift; sourceTree = "<group>"; };
-		5729EF5E1B050DFE008BB71D /* CLI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
-		5729EF5F1B050DFE008BB71D /* CommandSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandSignature.swift; sourceTree = "<group>"; };
-		5729EF601B050DFE008BB71D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		5729EF611B050DFE008BB71D /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		5729EF641B050DFE008BB71D /* ChainableCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainableCommand.swift; sourceTree = "<group>"; };
-		5729EF651B050DFE008BB71D /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
-		5729EF661B050DFE008BB71D /* LightweightCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightweightCommand.swift; sourceTree = "<group>"; };
-		5729EF681B050DFE008BB71D /* HelpCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
-		5729EF691B050DFE008BB71D /* VersionCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionCommand.swift; sourceTree = "<group>"; };
-		5729EF6B1B050DFE008BB71D /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
-		5729EF6C1B050DFE008BB71D /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
-		5729EF6E1B050DFE008BB71D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5740DE7619B66AB2007DB96C /* whereami */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = whereami; sourceTree = BUILT_PRODUCTS_DIR; };
 		5740DE7919B66AB2007DB96C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		57749A651B48A722008E4ECF /* CommandArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandArguments.swift; sourceTree = "<group>"; };
+		57749A661B48A722008E4ECF /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		57749A671B48A722008E4ECF /* RawArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawArguments.swift; sourceTree = "<group>"; };
+		57749A691B48A722008E4ECF /* CLI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		57749A6A1B48A722008E4ECF /* CommandSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandSignature.swift; sourceTree = "<group>"; };
+		57749A6B1B48A722008E4ECF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		57749A6C1B48A722008E4ECF /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		57749A6F1B48A722008E4ECF /* ChainableCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainableCommand.swift; sourceTree = "<group>"; };
+		57749A701B48A722008E4ECF /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		57749A711B48A722008E4ECF /* CommandMessageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandMessageGenerator.swift; sourceTree = "<group>"; };
+		57749A721B48A722008E4ECF /* LightweightCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightweightCommand.swift; sourceTree = "<group>"; };
+		57749A741B48A722008E4ECF /* HelpCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
+		57749A751B48A722008E4ECF /* VersionCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionCommand.swift; sourceTree = "<group>"; };
+		57749A771B48A722008E4ECF /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		57749A781B48A722008E4ECF /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		57A6F51C1A3E371A0059F83B /* WhereAmICommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereAmICommand.swift; sourceTree = "<group>"; };
 		57A6F5201A3E46F30059F83B /* WAIVersionCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAIVersionCommand.swift; sourceTree = "<group>"; };
 		57DE650819B8BA020032578E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = whereami/Info.plist; sourceTree = "<group>"; };
@@ -73,85 +73,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5729EF581B050DFE008BB71D /* SwiftCLI */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF591B050DFE008BB71D /* Arguments */,
-				5729EF5D1B050DFE008BB71D /* CLI */,
-				5729EF621B050DFE008BB71D /* Commands */,
-				5729EF6A1B050DFE008BB71D /* IO */,
-				5729EF6D1B050DFE008BB71D /* Result */,
-			);
-			name = SwiftCLI;
-			path = SwiftCLI/SwiftCLI;
-			sourceTree = "<group>";
-		};
-		5729EF591B050DFE008BB71D /* Arguments */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF5A1B050DFE008BB71D /* CommandArguments.swift */,
-				5729EF5B1B050DFE008BB71D /* Options.swift */,
-				5729EF5C1B050DFE008BB71D /* RawArguments.swift */,
-			);
-			path = Arguments;
-			sourceTree = "<group>";
-		};
-		5729EF5D1B050DFE008BB71D /* CLI */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF5E1B050DFE008BB71D /* CLI.swift */,
-				5729EF5F1B050DFE008BB71D /* CommandSignature.swift */,
-				5729EF601B050DFE008BB71D /* Extensions.swift */,
-				5729EF611B050DFE008BB71D /* Router.swift */,
-			);
-			path = CLI;
-			sourceTree = "<group>";
-		};
-		5729EF621B050DFE008BB71D /* Commands */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF631B050DFE008BB71D /* Base */,
-				5729EF671B050DFE008BB71D /* Special */,
-			);
-			path = Commands;
-			sourceTree = "<group>";
-		};
-		5729EF631B050DFE008BB71D /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF641B050DFE008BB71D /* ChainableCommand.swift */,
-				5729EF651B050DFE008BB71D /* Command.swift */,
-				5729EF661B050DFE008BB71D /* LightweightCommand.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		5729EF671B050DFE008BB71D /* Special */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF681B050DFE008BB71D /* HelpCommand.swift */,
-				5729EF691B050DFE008BB71D /* VersionCommand.swift */,
-			);
-			path = Special;
-			sourceTree = "<group>";
-		};
-		5729EF6A1B050DFE008BB71D /* IO */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF6B1B050DFE008BB71D /* Input.swift */,
-				5729EF6C1B050DFE008BB71D /* Output.swift */,
-			);
-			path = IO;
-			sourceTree = "<group>";
-		};
-		5729EF6D1B050DFE008BB71D /* Result */ = {
-			isa = PBXGroup;
-			children = (
-				5729EF6E1B050DFE008BB71D /* Result.swift */,
-			);
-			path = Result;
-			sourceTree = "<group>";
-		};
 		5740DE6D19B66AB2007DB96C = {
 			isa = PBXGroup;
 			children = (
@@ -171,13 +92,84 @@
 		5740DE7819B66AB2007DB96C /* whereami */ = {
 			isa = PBXGroup;
 			children = (
-				5729EF581B050DFE008BB71D /* SwiftCLI */,
+				57749A631B48A722008E4ECF /* SwiftCLI */,
 				57DE650719B8A8020032578E /* Supporting Files */,
 				5740DE7919B66AB2007DB96C /* main.swift */,
 				57A6F51C1A3E371A0059F83B /* WhereAmICommand.swift */,
 				57A6F5201A3E46F30059F83B /* WAIVersionCommand.swift */,
 			);
 			path = whereami;
+			sourceTree = "<group>";
+		};
+		57749A631B48A722008E4ECF /* SwiftCLI */ = {
+			isa = PBXGroup;
+			children = (
+				57749A641B48A722008E4ECF /* Arguments */,
+				57749A681B48A722008E4ECF /* CLI */,
+				57749A6D1B48A722008E4ECF /* Commands */,
+				57749A761B48A722008E4ECF /* IO */,
+			);
+			name = SwiftCLI;
+			path = SwiftCLI/SwiftCLI;
+			sourceTree = "<group>";
+		};
+		57749A641B48A722008E4ECF /* Arguments */ = {
+			isa = PBXGroup;
+			children = (
+				57749A651B48A722008E4ECF /* CommandArguments.swift */,
+				57749A661B48A722008E4ECF /* Options.swift */,
+				57749A671B48A722008E4ECF /* RawArguments.swift */,
+			);
+			path = Arguments;
+			sourceTree = "<group>";
+		};
+		57749A681B48A722008E4ECF /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				57749A691B48A722008E4ECF /* CLI.swift */,
+				57749A6A1B48A722008E4ECF /* CommandSignature.swift */,
+				57749A6B1B48A722008E4ECF /* Extensions.swift */,
+				57749A6C1B48A722008E4ECF /* Router.swift */,
+			);
+			path = CLI;
+			sourceTree = "<group>";
+		};
+		57749A6D1B48A722008E4ECF /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				57749A6E1B48A722008E4ECF /* Base */,
+				57749A731B48A722008E4ECF /* Special */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		57749A6E1B48A722008E4ECF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				57749A6F1B48A722008E4ECF /* ChainableCommand.swift */,
+				57749A701B48A722008E4ECF /* Command.swift */,
+				57749A711B48A722008E4ECF /* CommandMessageGenerator.swift */,
+				57749A721B48A722008E4ECF /* LightweightCommand.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		57749A731B48A722008E4ECF /* Special */ = {
+			isa = PBXGroup;
+			children = (
+				57749A741B48A722008E4ECF /* HelpCommand.swift */,
+				57749A751B48A722008E4ECF /* VersionCommand.swift */,
+			);
+			path = Special;
+			sourceTree = "<group>";
+		};
+		57749A761B48A722008E4ECF /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				57749A771B48A722008E4ECF /* Input.swift */,
+				57749A781B48A722008E4ECF /* Output.swift */,
+			);
+			path = IO;
 			sourceTree = "<group>";
 		};
 		57DE650719B8A8020032578E /* Supporting Files */ = {
@@ -215,7 +207,8 @@
 		5740DE6E19B66AB2007DB96C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Hand Forged";
 				TargetAttributes = {
 					5740DE7519B66AB2007DB96C = {
@@ -245,24 +238,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5729EF7D1B050DFE008BB71D /* Result.swift in Sources */,
-				5729EF7C1B050DFE008BB71D /* Output.swift in Sources */,
-				5729EF7A1B050DFE008BB71D /* VersionCommand.swift in Sources */,
 				57A6F5211A3E46F30059F83B /* WAIVersionCommand.swift in Sources */,
-				5729EF741B050DFE008BB71D /* Extensions.swift in Sources */,
-				5729EF751B050DFE008BB71D /* Router.swift in Sources */,
-				5729EF781B050DFE008BB71D /* LightweightCommand.swift in Sources */,
-				5729EF761B050DFE008BB71D /* ChainableCommand.swift in Sources */,
-				5729EF7B1B050DFE008BB71D /* Input.swift in Sources */,
+				57749A7E1B48A722008E4ECF /* Extensions.swift in Sources */,
+				57749A821B48A722008E4ECF /* CommandMessageGenerator.swift in Sources */,
+				57749A7F1B48A722008E4ECF /* Router.swift in Sources */,
+				57749A871B48A722008E4ECF /* Output.swift in Sources */,
+				57749A851B48A722008E4ECF /* VersionCommand.swift in Sources */,
+				57749A801B48A722008E4ECF /* ChainableCommand.swift in Sources */,
 				57A6F51D1A3E371A0059F83B /* WhereAmICommand.swift in Sources */,
-				5729EF731B050DFE008BB71D /* CommandSignature.swift in Sources */,
-				5729EF6F1B050DFE008BB71D /* CommandArguments.swift in Sources */,
-				5729EF791B050DFE008BB71D /* HelpCommand.swift in Sources */,
-				5729EF721B050DFE008BB71D /* CLI.swift in Sources */,
-				5729EF701B050DFE008BB71D /* Options.swift in Sources */,
+				57749A7D1B48A722008E4ECF /* CommandSignature.swift in Sources */,
+				57749A791B48A722008E4ECF /* CommandArguments.swift in Sources */,
+				57749A831B48A722008E4ECF /* LightweightCommand.swift in Sources */,
+				57749A841B48A722008E4ECF /* HelpCommand.swift in Sources */,
+				57749A7C1B48A722008E4ECF /* CLI.swift in Sources */,
+				57749A7A1B48A722008E4ECF /* Options.swift in Sources */,
 				5740DE7A19B66AB2007DB96C /* main.swift in Sources */,
-				5729EF711B050DFE008BB71D /* RawArguments.swift in Sources */,
-				5729EF771B050DFE008BB71D /* Command.swift in Sources */,
+				57749A861B48A722008E4ECF /* Input.swift in Sources */,
+				57749A7B1B48A722008E4ECF /* RawArguments.swift in Sources */,
+				57749A811B48A722008E4ECF /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +282,7 @@
 				COPY_PHASE_STRIP = NO;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
