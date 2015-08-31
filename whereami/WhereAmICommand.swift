@@ -103,7 +103,7 @@ public class WhereAmICommand: NSObject, OptionCommandType, CLLocationManagerDele
             manager.delegate = self;
             manager.startUpdatingLocation(); // TODO: Use requestLocation() in 10.11
 
-            status = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 15, 0)
+            status = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 15, false)
 
 
             guard status != .TimedOut else {
