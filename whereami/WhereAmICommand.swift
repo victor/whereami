@@ -13,13 +13,13 @@ import CoreLocation
 
 let MaxLocationFixStaleness = 10.0
 
-enum OutputFormat {
-    case Json
-    case Bare
-    case Sexagesimal
+enum OutputFormat: String {
+    case Json = "json"
+    case Bare = "bare"
+    case Sexagesimal = "sexagesimal"
 }
 
-class WhereAmICommand: Command, CLLocationManagerDelegate {
+class WhereAmICommand: NSObject, OptionCommandType, CLLocationManagerDelegate {
     var locationObtained = false
     var errorOccurred = false
     var location = CLLocationCoordinate2DMake(0, 0)
@@ -28,7 +28,7 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
     var format = OutputFormat.Bare
 
 
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]) {
 
         // the last one will be the most recent
         let updatedLocation = locations.last as! CLLocation;
@@ -42,7 +42,7 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
 
     }
 
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         if (error.domain == kCLErrorDomain) {
             switch (CLError(rawValue: error.code)!) {
             case .LocationUnknown:
@@ -58,7 +58,7 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
         CFRunLoopStop(CFRunLoopGetCurrent());
     }
 
-    func display(CLLocationCoordinate2D) -> () {
+    func display(_: CLLocationCoordinate2D) -> () {
         var outputString: String
         switch (self.format) {
         case .Json:
@@ -68,7 +68,7 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
         case .Bare:
             outputString = "\(location.latitude),\(location.longitude)"
         }
-        println(outputString);
+        print(outputString);
 
     }
 
@@ -89,13 +89,13 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
         return "\(Int(deg))° \(Int(min))′ \(sec)″"
 
     }
-    // MARK: - Overrides
+    // MARK: - OptionCommandType
 
-    override func commandName() -> String {
-        return ""
-    }
+    let commandName = ""
+    let commandSignature = ""
+    let commandShortDescription = ""
 
-    override func execute() -> ExecutionResult {
+    func execute(arguments: CommandArguments) throws {
         switch CLLocationManager.authorizationStatus() {
         case .Restricted:
             errorMessage = "You don't have permission to use Location Services.";
@@ -110,40 +110,31 @@ class WhereAmICommand: Command, CLLocationManagerDelegate {
             }
         }
 
-        var status: Int32 = 0
+        var status: CFRunLoopRunResult = .Finished
         if (!errorOccurred) {
 
             let manager = CLLocationManager();
             manager.delegate = self;
             manager.startUpdatingLocation();
 
-            status = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 15, 0)
+            status = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 15, false)
         }
 
         if (errorOccurred) {
-            return failure(errorMessage);
-        } else if (status == Int32(kCFRunLoopRunTimedOut)) {
-            return failure("Could not get a proper location fix in 15 seconds. Try again perhaps?")
+            throw CLIError.Error(errorMessage)
+        } else if (status == .TimedOut) {
+            throw CLIError.Error("Could not get a proper location fix in 15 seconds. Try again perhaps?")
         } else {
             display(location);
         }
-
-        return success();
     }
-
-    override func handleOptions() {
-        self.onKey("--format",
-            usage:"output format (bare (default), json, sexagesimal)",
-            valueSignature: "formatName",
-            block: {key, value in
-                switch (value) {
-                case "json":
-                    self.format = .Json
-                case "sexagesimal":
-                    self.format = .Sexagesimal
-                default:
-                    self.format = .Bare
-                }
-        })
+    
+    func setupOptions(options: Options) {
+        options.onKeys(["--format"],
+            usage: "output format (bare (default), json, sexagesimal)",
+            valueSignature: "formatName") {(key, value) in
+                self.format = OutputFormat(rawValue: value) ?? .Bare
+        }
     }
+    
 }

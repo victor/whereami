@@ -12,14 +12,8 @@ import Foundation
 // main code
 
 CLI.setup(name:"whereami", version:"1.0", description:"Get your location from the command line")
-let whereamiCommand = WhereAmICommand()
-let versionCommand = WAIVersionCommand()
-CLI.registerCustomVersionCommand(versionCommand)
-CLI.registerDefaultCommand(whereamiCommand)
-let result = CLI.go()
 
-func cliExit(result: CLIResult) {
-    exit(result)
-}
+CLI.defaultCommand = WhereAmICommand()
+CLI.versionComand = WAIVersionCommand()
 
-cliExit(result)
+exit(CLI.go())
