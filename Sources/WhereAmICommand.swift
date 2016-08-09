@@ -24,7 +24,6 @@ enum WhereAmIError: ErrorType {
 	case deniedPermission
 	case locationServicesDisabled
 	case invalidLocationFix
-//	case locationUnknown
 }
 
 public class WhereAmICommand: NSObject, OptionCommandType, CLLocationManagerDelegate {
