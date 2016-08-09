@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		_LinkFileRef_SwiftCLI_via_whereami /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftCLI" /* SwiftCLI.framework */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CLI.swift" /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CLI.swift" /* CLI.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/ChainableCommand.swift" /* ChainableCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/ChainableCommand.swift" /* ChainableCommand.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Command.swift" /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Command.swift" /* Command.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CommandArguments.swift" /* CommandArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandArguments.swift" /* CommandArguments.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CommandMessageGenerator.swift" /* CommandMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandMessageGenerator.swift" /* CommandMessageGenerator.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CommandSignature.swift" /* CommandSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandSignature.swift" /* CommandSignature.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Extensions.swift" /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Extensions.swift" /* Extensions.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/HelpCommand.swift" /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/HelpCommand.swift" /* HelpCommand.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Input.swift" /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Input.swift" /* Input.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/LightweightCommand.swift" /* LightweightCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/LightweightCommand.swift" /* LightweightCommand.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Options.swift" /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Options.swift" /* Options.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Output.swift" /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Output.swift" /* Output.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/RawArguments.swift" /* RawArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/RawArguments.swift" /* RawArguments.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Router.swift" /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Router.swift" /* Router.swift */; };
+		"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/VersionCommand.swift" /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/VersionCommand.swift" /* VersionCommand.swift */; };
+		__src_cc_ref_Sources/WhereAmICommand.swift /* WhereAmICommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/WhereAmICommand.swift /* WhereAmICommand.swift */; };
+		__src_cc_ref_Sources/main.swift /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/main.swift /* main.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		57DE33BD1D53EFB000EF26B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		577375881D5A283A00D52DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CLI.swift" /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/ChainableCommand.swift" /* ChainableCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainableCommand.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Command.swift" /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandArguments.swift" /* CommandArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandArguments.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandMessageGenerator.swift" /* CommandMessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandMessageGenerator.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandSignature.swift" /* CommandSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandSignature.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Extensions.swift" /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/HelpCommand.swift" /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Input.swift" /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/LightweightCommand.swift" /* LightweightCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightweightCommand.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Options.swift" /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Output.swift" /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/RawArguments.swift" /* RawArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawArguments.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Router.swift" /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/VersionCommand.swift" /* VersionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCommand.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/WhereAmICommand.swift /* WhereAmICommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereAmICommand.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/main.swift /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		__PBXFileRef_SwiftCLI_Info.plist /* SwiftCLI_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = SwiftCLI_Info.plist; path = whereami.xcodeproj/SwiftCLI_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_whereami.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = whereami.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		"_____Product_SwiftCLI" /* SwiftCLI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftCLI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_whereami" /* whereami */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = whereami; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_SwiftCLI" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_whereami" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_SwiftCLI_via_whereami /* SwiftCLI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		Dependencies_ /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_SwiftCLI" /* SwiftCLI */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				577375881D5A283A00D52DE2 /* Info.plist */,
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Configs_" /* Configs */,
+				"_____Sources_" /* Sources */,
+				Dependencies_ /* Dependencies */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_SwiftCLI" /* SwiftCLI.framework */,
+				"_____Product_whereami" /* whereami */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Configs_" /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_whereami.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_whereami" /* whereami */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_SwiftCLI" /* SwiftCLI */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/ChainableCommand.swift" /* ChainableCommand.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CLI.swift" /* CLI.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Command.swift" /* Command.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandArguments.swift" /* CommandArguments.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandMessageGenerator.swift" /* CommandMessageGenerator.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/CommandSignature.swift" /* CommandSignature.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Extensions.swift" /* Extensions.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/HelpCommand.swift" /* HelpCommand.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Input.swift" /* Input.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/LightweightCommand.swift" /* LightweightCommand.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Options.swift" /* Options.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Output.swift" /* Output.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/RawArguments.swift" /* RawArguments.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/Router.swift" /* Router.swift */,
+				"__PBXFileRef_Packages/SwiftCLI-1.2.0/Sources/VersionCommand.swift" /* VersionCommand.swift */,
+				__PBXFileRef_SwiftCLI_Info.plist /* SwiftCLI_Info.plist */,
+			);
+			name = SwiftCLI;
+			path = "Packages/SwiftCLI-1.2.0/Sources";
+			sourceTree = "<group>";
+		};
+		"_______Group_whereami" /* whereami */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/main.swift /* main.swift */,
+				__PBXFileRef_Sources/WhereAmICommand.swift /* WhereAmICommand.swift */,
+			);
+			name = whereami;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_SwiftCLI" /* SwiftCLI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_SwiftCLI" /* Build configuration list for PBXNativeTarget "SwiftCLI" */;
+			buildPhases = (
+				CompilePhase_SwiftCLI /* Sources */,
+				"___LinkPhase_SwiftCLI" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCLI;
+			productName = SwiftCLI;
+			productReference = "_____Product_SwiftCLI" /* SwiftCLI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_whereami" /* whereami */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_whereami" /* Build configuration list for PBXNativeTarget "whereami" */;
+			buildPhases = (
+				CompilePhase_whereami /* Sources */,
+				"___LinkPhase_whereami" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_SwiftCLI /* PBXTargetDependency */,
+			);
+			name = whereami;
+			productName = whereami;
+			productReference = "_____Product_whereami" /* whereami */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"______Target_SwiftCLI" = {
+						LastSwiftMigration = 0800;
+					};
+					"______Target_whereami" = {
+						LastSwiftMigration = 0800;
+					};
+				};
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "whereami" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_SwiftCLI" /* SwiftCLI */,
+				"______Target_whereami" /* whereami */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_SwiftCLI /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/ChainableCommand.swift" /* ChainableCommand.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CLI.swift" /* CLI.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Command.swift" /* Command.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CommandArguments.swift" /* CommandArguments.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CommandMessageGenerator.swift" /* CommandMessageGenerator.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/CommandSignature.swift" /* CommandSignature.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Extensions.swift" /* Extensions.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/HelpCommand.swift" /* HelpCommand.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Input.swift" /* Input.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/LightweightCommand.swift" /* LightweightCommand.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Options.swift" /* Options.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Output.swift" /* Output.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/RawArguments.swift" /* RawArguments.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/Router.swift" /* Router.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftCLI-1.2.0/Sources/VersionCommand.swift" /* VersionCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_whereami /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/main.swift /* main.swift in Sources */,
+				__src_cc_ref_Sources/WhereAmICommand.swift /* WhereAmICommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_SwiftCLI /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_SwiftCLI" /* SwiftCLI */;
+			targetProxy = 57DE33BD1D53EFB000EF26B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_SwiftCLI /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = whereami.xcodeproj/SwiftCLI_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_whereami /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Info.plist,
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+			};
+			name = Release;
+		};
+		"___DebugConf_SwiftCLI" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = whereami.xcodeproj/SwiftCLI_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_whereami" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					Info.plist,
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_whereami.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */;
+			buildSettings = {
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_whereami.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */;
+			buildSettings = {
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "whereami" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_SwiftCLI" /* Build configuration list for PBXNativeTarget "SwiftCLI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_SwiftCLI" /* Debug */,
+				_ReleaseConf_SwiftCLI /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_whereami" /* Build configuration list for PBXNativeTarget "whereami" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_whereami" /* Debug */,
+				_ReleaseConf_whereami /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
+}

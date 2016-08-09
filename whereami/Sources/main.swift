@@ -7,20 +7,15 @@
 //
 
 import Foundation
-
+import SwiftCLI
 
 // main code
 
 CLI.setup(name:"whereami", version:"1.1", description:"Get your location from the command line")
+
 let whereamiCommand = WhereAmICommand()
-let versionCommand = WAIVersionCommand()
-CLI.registerCommand(versionCommand)
-CLI.defaultCommand = whereamiCommand
+CLI.router = DefaultRouter(defaultCommand: whereamiCommand)
 
 let result = CLI.go()
 
-func cliExit(result: CLIResult) {
-    exit(result)
-}
-
-cliExit(result)
+exit(result)

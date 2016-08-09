@@ -2,3 +2,4 @@ whereami.xcodeproj/xcuserdata
 *.xcworkspacedata
 whereami.xcodeproj/project.xcworkspace/xcuserdata
 build
+whereami/.build
